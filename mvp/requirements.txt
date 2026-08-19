@@ -2,3 +2,9 @@ fastapi
 uvicorn
 requests
 pydantic
+streamlit
+ddgs
+exa_py
+openai
+rouge-score
+sentence-transformers

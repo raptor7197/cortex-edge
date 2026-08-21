@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.db
+.env
+.cache/
+datasets/faiss.index*
+datasets/chunks.json
+datasets/routing_training.csv
+experiments/results/
+experiments/router.joblib
+experiments/cortexedge.db
+.pytest_cache/
+.streamlit/

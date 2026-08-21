@@ -1,0 +1,33 @@
+# CortexEdge core
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+requests
+psutil
+numpy
+pandas
+scikit-learn
+diskcache
+streamlit
+pymupdf
+
+# RAG embeddings (optional but recommended; pulls torch)
+sentence-transformers
+
+# FAISS vector index (optional; numpy fallback built in)
+faiss-cpu
+
+# web search
+ddgs
+
+# optional extras
+# exa_py                # Exa AI search fallback (needs EXA_API_KEY)
+# python-docx           # .docx ingestion for RAG
+# mlflow                # experiment tracking
+# openai                # cloud comparison harness (compare_cloud.py)
+# rouge-score           # summarization quality eval
+
+# Raspberry Pi extras (see README):
+# adafruit-circuitpython-ina219   # power logging (INA219)
+# airllm               # CPU-only big-model eval (needs torch>=1.5GB)

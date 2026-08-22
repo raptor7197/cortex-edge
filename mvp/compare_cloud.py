@@ -205,7 +205,7 @@ def main():
         best = max(rows, key=lambda r: r[1])
         print(f"Best quality: {best[0]} ({best[1]:.2f})")
         for name, s, l, t in sorted(rows, key=lambda r: -r[1]):
-            print(f"  {name:<18} score={s:.2f} latency={l:.0f}ms tok/s={t/ (l/1000):.1f}")
+            print(f"  {name:<18} score={s:.2f} latency={l:.0f}ms tok/s={t / (l / 1000) if l > 0 else 0.0:.1f}")
 
 
 if __name__ == "__main__":

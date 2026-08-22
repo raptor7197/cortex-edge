@@ -65,7 +65,7 @@ st.divider()
 if st.session_state.chat:
     for msg in st.session_state.chat:
         with st.chat_message(msg["role"]):
-            st.markdown(msg["content"], unsafe_allow_html=True)
+            st.markdown(msg["content"])
             if "stats" in msg:
                 st.caption(msg["stats"])
 

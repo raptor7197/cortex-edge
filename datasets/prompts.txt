@@ -1,0 +1,33 @@
+# Routing dataset prompts: "task class | prompt" per line.
+# Task classes: greeting, factual, summary, code, math, reasoning, document
+greeting | Hello!
+greeting | Hi there, how are you?
+greeting | Thanks!
+factual | What is the capital of France?
+factual | What is the speed of light?
+factual | Who painted the Mona Lisa?
+factual | What is the largest planet in our solar system?
+factual | How many continents are there?
+summary | Summarize the water cycle in two sentences.
+summary | Explain what a GPU does in two sentences.
+summary | Summarize the benefits of regular exercise in one paragraph.
+summary | Explain how photosynthesis works in three sentences.
+code | Write a Python function to compute the factorial of a number.
+code | Explain the difference between a list and a tuple in Python.
+code | Debug this: why does this Python loop never terminate?
+code | Show how to sort a dictionary by value in Python.
+math | What is 15 multiplied by 4?
+math | Calculate the area of a circle with radius 3.
+math | Solve for x: 2x + 5 = 13
+math | What is the derivative of x squared?
+reasoning | Explain why the sky is blue.
+reasoning | Derive the formula for compound interest step by step.
+reasoning | Compare the advantages of solar and wind energy.
+reasoning | What are the steps to solve a quadratic equation?
+reasoning | Analyse the causes of the Industrial Revolution.
+reasoning | Why does a ball thrown up come back down?
+reasoning | Prove that the square root of 2 is irrational.
+document | Summarize the main points of the uploaded paper.
+document | What does the document say about quantization?
+document | Extract the key findings from the report.
+document | Quote the methodology section from the document.

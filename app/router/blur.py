@@ -4,6 +4,11 @@ Interactive budget-driven selection: pick the route with the highest
 utility (quality, weighted against latency pressure) among routes that
 fit the user's latency budget. Used by the UI's "auto" mode and as an
 alternative to the rule router.
+
+`pooled` (peer-to-peer browser inference) appears here as a high-quality
+route whose "latency" is time-to-first-token plus the room's queue:
+one round-trip per device per token, so it fits interactive budgets
+only when the room is on a fast link — see docs/POOLED_INTEGRATION.md.
 """
 
 from dataclasses import dataclass
@@ -18,10 +23,11 @@ class RouteProfile:
 
 
 ROUTE_PROFILES = {
-    "small": RouteProfile("small", "qwen2.5:0.5b", 0.7, 0.35),
-    "medium": RouteProfile("medium", "gemma2:2b", 3.0, 0.80),
-    "moe": RouteProfile("moe", "qwen2.5:1.5b", 1.2, 0.60),
-    "large": RouteProfile("large", "qwen3:4b", 8.0, 0.90),
+    "small": RouteProfile("small", "qwen2.5:1.5b", 1.1, 0.55),
+    "medium": RouteProfile("medium", "gemma2:2b", 1.6, 0.78),
+    "moe": RouteProfile("moe", "qwen2.5:1.5b", 1.1, 0.55),
+    "large": RouteProfile("large", "llama3.1:8b", 12.0, 0.90),
+    "pooled": RouteProfile("pooled", "pooled (room)", 2.5, 0.93),
 }
 
 ENABLED = {"small", "medium"}

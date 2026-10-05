@@ -10,15 +10,26 @@ Streaming path measures TTFT (time-to-first-token) which the
 non-streaming endpoint cannot report (PLAN 16.2). The cloud client has
 a circuit breaker: after N consecutive failures the route is disabled
 for a cooldown period (PLAN Phase 8).
+
+Latency work (docs/LOCAL_LATENCY.md): one pooled HTTP session for the
+whole process, `keep_alive=-1` so the model is never unloaded between
+requests (a cold load is 4-6 s on CPU, dwarfing generation), a trimmed
+KV cache (`num_ctx`), explicit thread count and startup warm-up.
+
+The peer-to-peer `pooled` route lives in app/inference/pooled_client.py.
 """
 
 import json
+import os
+import socket
+import struct
 import time
 from typing import cast
 
 import requests
+from requests.adapters import HTTPAdapter
 
-from app.config import settings
+from app.config import keep_alive_value, settings
 from app.schemas import InferenceResult, Route
 
 LOCAL_MODELS = {
@@ -28,6 +39,72 @@ LOCAL_MODELS = {
     "large": settings.model_large,
 }
 
+_SESSION: requests.Session | None = None
+_OLLAMA_BASE: str | None = None
+
+
+def session() -> requests.Session:
+    """Process-wide HTTP session (keep-alive: no TCP handshake per request)."""
+    global _SESSION
+    if _SESSION is None:
+        s = requests.Session()
+        adapter = HTTPAdapter(pool_connections=8, pool_maxsize=16)
+        s.mount("http://", adapter)
+        s.mount("https://", adapter)
+        _SESSION = s
+    return _SESSION
+
+
+def default_gateway() -> str | None:
+    """Default gateway of this container/host (the machine running Ollama)."""
+    try:
+        with open("/proc/net/route", encoding="utf-8") as fh:
+            for line in fh.readlines()[1:]:
+                fields = line.split()
+                if len(fields) > 2 and fields[1] == "00000000":
+                    return socket.inet_ntoa(struct.pack("<L", int(fields[2], 16)))
+    except Exception:
+        pass
+    env_gw = os.environ.get("HERMES_HOST_IP") or os.environ.get("OLLAMA_FALLBACK_HOST")
+    return env_gw or None
+
+
+def ollama_base() -> str:
+    """Resolve the Ollama base URL once.
+
+    `OLLAMA_API_URL=auto` probes, in order: $OLLAMA_HOST, localhost:11434,
+    the default gateway on :11434 (the dev host when CortexEdge runs in a
+    container). The first one that answers /api/tags wins.
+    """
+    global _OLLAMA_BASE
+    if _OLLAMA_BASE is not None:
+        return _OLLAMA_BASE
+
+    configured = (settings.ollama_api_url or "").strip()
+    if configured and configured.lower() != "auto":
+        _OLLAMA_BASE = configured.rstrip("/")
+        return _OLLAMA_BASE
+
+    candidates: list[str] = []
+    env_host = os.environ.get("OLLAMA_HOST", "").strip()
+    if env_host and "://" in env_host:
+        candidates.append(env_host.rstrip("/"))
+    candidates += ["http://127.0.0.1:11434", "http://localhost:11434"]
+    gw = default_gateway()
+    if gw:
+        candidates.append(f"http://{gw}:11434")
+
+    for cand in candidates:
+        try:
+            r = session().get(f"{cand}/api/tags", timeout=1.5)
+            if r.status_code == 200:
+                _OLLAMA_BASE = cand
+                return _OLLAMA_BASE
+        except Exception:
+            continue
+    _OLLAMA_BASE = candidates[-1] if len(candidates) > 1 else "http://127.0.0.1:11434"
+    return _OLLAMA_BASE
+
 
 def local_model_name(route: str) -> str:
     if route in LOCAL_MODELS:
@@ -35,6 +112,62 @@ def local_model_name(route: str) -> str:
     if route in {"local_rag", "cache"}:
         return LOCAL_MODELS[settings.rag_generation_route]
     return route
+
+
+def ollama_options(max_tokens: int) -> dict:
+    """Options that cut latency on CPU (docs/LOCAL_LATENCY.md)."""
+    opts: dict = {
+        "num_predict": max_tokens,
+        "temperature": 0.2,
+        "num_ctx": settings.ollama_num_ctx,
+        "num_batch": settings.ollama_num_batch,
+    }
+    if settings.ollama_num_thread > 0:
+        opts["num_thread"] = settings.ollama_num_thread
+    return opts
+
+
+def ollama_tags(timeout: float = 3.0) -> set[str]:
+    """Names of models the backend has locally (empty when unreachable)."""
+    try:
+        r = session().get(f"{ollama_base()}/api/tags", timeout=timeout)
+        r.raise_for_status()
+        return {m["name"] for m in r.json().get("models", [])}
+    except Exception:
+        return set()
+
+
+def warmup(route: str, timeout: int = 300) -> bool:
+    """Preload a tier's model with keep_alive=-1 so the first real request
+    does not pay the 4-6 s cold-load cost."""
+    if settings.backend != "ollama":
+        return False
+    try:
+        r = session().post(
+            f"{ollama_base()}/api/chat",
+            json={
+                "model": local_model_name(route),
+                "messages": [{"role": "user", "content": "ok"}],
+                "stream": False,
+                "keep_alive": keep_alive_value(),
+                # same options as a real request, so warm-up leaves the model
+                # loaded in exactly the configuration later requests use
+                # (a differing num_ctx makes Ollama reload it)
+                "options": ollama_options(1),
+            },
+            timeout=timeout,
+        )
+        r.raise_for_status()
+        return True
+    except Exception:
+        return False
+
+
+def resync_ollama_base() -> str:
+    """Re-probe after a backend restart (used by /health?refresh=1)."""
+    global _OLLAMA_BASE
+    _OLLAMA_BASE = None
+    return ollama_base()
 
 
 class CloudCircuitBreaker:
@@ -72,7 +205,7 @@ circuit_breaker = CloudCircuitBreaker(
 
 
 def _post_json(url: str, payload: dict, timeout: int, headers: dict | None = None):
-    r = requests.post(url, json=payload, timeout=timeout, headers=headers)
+    r = session().post(url, json=payload, timeout=timeout, headers=headers)
     r.raise_for_status()
     return r
 
@@ -81,13 +214,15 @@ def run_local(route: str, prompt: str, max_tokens: int = 256) -> InferenceResult
     """Non-streaming local inference (used by benchmarks)."""
     start = time.perf_counter()
     if settings.backend == "ollama":
+        model = local_model_name(route)
         r = _post_json(
-            f"{settings.ollama_api_url}/api/chat",
+            f"{ollama_base()}/api/chat",
             {
-                "model": local_model_name(route),
+                "model": model,
                 "messages": [{"role": "user", "content": prompt}],
                 "stream": False,
-                "options": {"num_predict": max_tokens, "temperature": 0.2},
+                "keep_alive": keep_alive_value(),
+                "options": ollama_options(max_tokens),
             },
             settings.request_timeout_s,
         )
@@ -95,7 +230,14 @@ def run_local(route: str, prompt: str, max_tokens: int = 256) -> InferenceResult
         text = data["message"]["content"]
         prompt_tokens = data.get("prompt_eval_count")
         completion_tokens = data.get("eval_count")
-        metadata = {"backend": "ollama", "model": local_model_name(route)}
+        metadata = {
+            "backend": "ollama",
+            "model": model,
+            "server": ollama_base(),
+            "load_ms": round(data.get("load_duration", 0) / 1e6, 1),
+            "prompt_eval_ms": round(data.get("prompt_eval_duration", 0) / 1e6, 1),
+            "eval_ms": round(data.get("eval_duration", 0) / 1e6, 1),
+        }
     else:
         r = _post_json(
             _local_url(route),
@@ -160,12 +302,13 @@ def stream_chat(
     try:
         if settings.backend == "ollama":
             r = _post_json(
-                f"{settings.ollama_api_url}/api/chat",
+                f"{ollama_base()}/api/chat",
                 {
                     "model": local_model_name(route),
                     "messages": messages,
                     "stream": True,
-                    "options": {"num_predict": max_tokens, "temperature": 0.2},
+                    "keep_alive": keep_alive_value(),
+                    "options": ollama_options(max_tokens),
                 },
                 timeout=180,
             )
@@ -258,7 +401,8 @@ def run_cloud(prompt: str, max_tokens: int = 256) -> InferenceResult:
             text=data["choices"][0]["message"]["content"],
             route="cloud",
             latency_ms=elapsed_ms,
-            prompt_tokens=usage.get("prompt_tokens"),            completion_tokens=completion,
+            prompt_tokens=usage.get("prompt_tokens"),
+            completion_tokens=completion,
             tokens_per_second=(
                 round(completion / (elapsed_ms / 1000), 1)
                 if completion and elapsed_ms

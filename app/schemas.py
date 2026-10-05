@@ -4,7 +4,9 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
-Route = Literal["small", "medium", "moe", "large", "local_rag", "cloud", "cache"]
+Route = Literal[
+    "small", "medium", "moe", "large", "local_rag", "cloud", "cache", "pooled"
+]
 Router = Literal["rule", "cost", "blur", "learned"]
 Policy = Literal["public", "private", "restricted", "ephemeral"]
 
@@ -24,7 +26,10 @@ class QueryRequest(BaseModel):
     latency_priority: float = Field(0.5, ge=0.0, le=1.0)
     energy_priority: float = Field(0.5, ge=0.0, le=1.0)
     latency_budget_s: float = Field(2.0, ge=0.5, le=30.0)
-    model: Literal["auto", "small", "medium", "moe", "large"] = "auto"
+    model: Literal["auto", "small", "medium", "moe", "large", "pooled"] = "auto"
+    # pooled-specific: let the room's model use its tool-calling / Code mode
+    # path instead of a plain chat completion.
+    pooled_tools: bool = False
 
 
 class InferenceResult(BaseModel):

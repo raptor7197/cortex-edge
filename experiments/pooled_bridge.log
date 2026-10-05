@@ -1,0 +1,2 @@
+pooled mock bridge on http://127.0.0.1:8080/v1 -> http://10.151.203.1:11434 (gemma2:2b)
+pooled mock bridge on http://127.0.0.1:8080/v1 -> http://10.151.203.1:11434 (qwen2.5:1.5b)

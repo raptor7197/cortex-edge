@@ -1,0 +1,966 @@
+INFO:     Started server process [2445]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[warmup] large -> llama3.1:8b: skipped
+[warmup] medium -> gemma2:2b: skipped
+[warmup] moe -> qwen2.5:1.5b: skipped
+[warmup] small -> qwen2.5:1.5b: skipped
+INFO:     127.0.0.1:55008 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55022 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55034 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55048 - "GET /routes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57222 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57226 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57236 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57238 - "GET /routes HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57250 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59488 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59502 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59504 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59512 - "POST /query HTTP/1.1" 503 Service Unavailable
+INFO:     127.0.0.1:59528 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59534 - "POST /query HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 476, in query
+    cached = cache.lookup(
+        req.text, policy, req.private, req.offline_only,
+        route=req.router,
+    )
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 171, in lookup
+    return self.semantic_get(text)
+           ~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/cache/semantic_cache.py", line 116, in semantic_get
+    q = self._get_embedder().encode([text])[0].astype("float32")
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/app/rag/embeddings.py", line 141, in encode
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://10.151.203.1:11434/api/embed
+INFO:     127.0.0.1:59538 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59550 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59566 - "GET /pooled/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59574 - "GET /db/stats HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [2445]
+INFO:     Started server process [3173]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:49016 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45684 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45696 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45706 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:45716 - "GET /routes HTTP/1.1" 200 OK
+[warmup] large -> llama3.1:8b: ready
+[warmup] medium -> gemma2:2b: ready
+INFO:     127.0.0.1:45728 - "POST /query HTTP/1.1" 200 OK
+[warmup] moe -> qwen2.5:1.5b: ready
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:51690 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43200 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43206 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35950 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:35952 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42092 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42104 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42106 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55468 - "GET /pooled/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:55480 - "GET /db/stats HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3173]
+INFO:     Started server process [3944]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:39954 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39960 - "GET /pooled/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39962 - "GET /health?refresh=true HTTP/1.1" 200 OK
+[warmup] medium -> gemma2:2b: ready
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:39972 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47086 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51680 - "POST /query HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:51682 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51696 - "POST /pooled/code HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/applications.py", line 1215, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_asgi.py", line 151, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 676, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 2786, in app
+    await route.handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 1310, in handle
+    await super().handle(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/routing.py", line 282, in handle
+    await self.app(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 165, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 151, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 727, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/routing.py", line 362, in run_endpoint_function
+    return await run_in_threadpool(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+        _run_sync_endpoint, function=dependant.call, arguments=values
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 2706, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/anyio/_backends/_asyncio.py", line 1100, in run
+    result = context.run(func, *args)
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/fastapi/telemetry/_api.py", line 240, in _run_sync_endpoint
+    return function(**arguments)
+  File "/home/krxsna/dev/edge-cortex/app/api/server.py", line 247, in pooled_code
+    return pooled_client.run_pooled_tools(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        messages,
+        ^^^^^^^^^
+        tools=payload.get("tools"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        max_tokens=int(payload.get("max_tokens", 1024)),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/krxsna/dev/edge-cortex/app/inference/pooled_client.py", line 363, in run_pooled_tools
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: http://127.0.0.1:8080/v1/chat/completions
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [3944]
+INFO:     Started server process [4263]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:57368 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57380 - "GET /pooled/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57392 - "GET /health?refresh=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57394 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57408 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57414 - "POST /query HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:57420 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57432 - "POST /pooled/code HTTP/1.1" 503 Service Unavailable
+[warmup] medium -> gemma2:2b: ready
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4263]
+INFO:     Started server process [4383]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[warmup] medium -> gemma2:2b: ready
+INFO:     127.0.0.1:52658 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52674 - "GET /pooled/status HTTP/1.1" 200 OK
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:52690 - "GET /health?refresh=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52700 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52240 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52248 - "POST /query HTTP/1.1" 400 Bad Request
+INFO:     127.0.0.1:52250 - "POST /query/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:39010 - "POST /pooled/code HTTP/1.1" 503 Service Unavailable
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4383]
+INFO:     Started server process [4767]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[warmup] medium -> gemma2:2b: ready
+INFO:     127.0.0.1:60196 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60208 - "GET /health?refresh=true HTTP/1.1" 200 OK
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:60214 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60224 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58870 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38576 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34238 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34240 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34256 - "POST /query HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [4767]
+INFO:     Started server process [5094]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:53210 - "GET /health HTTP/1.1" 200 OK
+[warmup] medium -> gemma2:2b: ready
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:47538 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47554 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47566 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:47572 - "POST /query HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5094]
+INFO:     Started server process [5195]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:34970 - "GET /health HTTP/1.1" 200 OK
+[warmup] medium -> gemma2:2b: ready
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:56006 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52448 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52450 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52464 - "POST /query HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5195]
+INFO:     Started server process [5365]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[warmup] medium -> gemma2:2b: ready
+INFO:     127.0.0.1:42478 - "GET /health HTTP/1.1" 200 OK
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:42480 - "GET /health?refresh=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42490 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42500 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42508 - "POST /query HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [5365]
+INFO:     Started server process [5484]
+INFO:     Waiting for application startup.
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator DecisionTreeClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator RandomForestClassifier from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/home/krxsna/dev/edge-cortex/.venv/lib/python3.14/site-packages/sklearn/base.py:525: InconsistentVersionWarning: Trying to unpickle estimator Pipeline from version 1.8.0 when using version 1.9.1. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+[warmup] medium -> gemma2:2b: ready
+INFO:     127.0.0.1:48060 - "GET /health HTTP/1.1" 200 OK
+[warmup] small -> qwen2.5:1.5b: ready
+INFO:     127.0.0.1:48070 - "GET /health?refresh=true HTTP/1.1" 200 OK
+INFO:     127.0.0.1:48084 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42140 - "POST /query HTTP/1.1" 200 OK
+INFO:     127.0.0.1:42148 - "POST /query HTTP/1.1" 200 OK
